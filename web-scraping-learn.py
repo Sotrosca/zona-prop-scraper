@@ -7,6 +7,7 @@ import numpy as np
 from datetime import datetime
 import re
 from functools import reduce
+import os
 
 browser = mechanize.Browser()
 browser.set_handle_robots(False)
@@ -71,8 +72,13 @@ print(str(estates_scrapped) + ' estates scrapped.' )
 
 dataframe = pd.DataFrame(estates)
 
-dataframe.to_csv('./data/' + csv_name, index=False)
-dataframe.to_excel('./data/' + excel_name, index=False)
+relative_data_path = './data/'
+
+if not os.path.exists(relative_data_path):
+    os.mkdir(relative_data_path)
+
+dataframe.to_csv(relative_data_path + csv_name, index=False)
+dataframe.to_excel(relative_data_path + excel_name, index=False)
 
 print('Data saved on ' + csv_name)
 print('Excel saved on ' + excel_name)
