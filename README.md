@@ -20,6 +20,6 @@ Pequeña conclusión:
 
 Se puede ver analizando como la red neuronal predice mayor valor a las propiedades de 3 ambientes y de 2 ambientes grandes con respecto al regresor lineal de alguna forma mostrando la mayor demanda de estas propiedades en el mercado.
 
-Con el mismo razonamiento, la red neuronal entiende que hay menos demanda por departamentos más pequeño o excesivamente grandes.
+Con el mismo razonamiento, la red neuronal entiende que hay menos demanda por departamentos más pequeños o excesivamente grandes.
 
 Esto tiene cierto sentido ya que las familias de clase media buscarán alquilar propiedades que se encuentren en un rango de área de entre 50 y 80 mts cuadrados, aumentando la demanda de estas propiedades.
