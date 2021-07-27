@@ -5,7 +5,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv('./data/data-17-07-2021_173036.csv')
+data_path = './data/data-26-07-2021_204537.csv'
+
+df = pd.read_csv(data_path)
 df = df[df['badge'] == '$']
 df.dropna(subset = ['Area'], inplace=True)
 df.dropna(subset = ['prize'], inplace=True)
