@@ -18,7 +18,7 @@ A su vez se entrenará con estos mismos datos un red neuronal multicapa que tamb
 
 Pequeña conclusión:
 
-Se puede ver analizando como la red neuronal predice mayor valor a las propiedades de 3 ambientes y de 2 ambientes grandes con respecto al regresor lineal de alguna forma mostrando la mayor demanda de estas propiedades en el mercado.
+Se puede ver, analizando como la red neuronal predice mayor valor a las propiedades de 3 ambientes y de 2 ambientes grandes con respecto al regresor lineal, que de alguna forma la red está entiendo la mayor demanda que hay por estas propiedades en el mercado.
 
 Con el mismo razonamiento, la red neuronal entiende que hay menos demanda por departamentos más pequeños o excesivamente grandes.
 
