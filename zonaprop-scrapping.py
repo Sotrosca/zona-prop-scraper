@@ -2,8 +2,8 @@ import json
 
 import pandas as pd
 
-from browser import Browser
-from scrapper import Scrapper
+from src.browser import Browser
+from src.scrapper import Scrapper
 
 
 def save_to_json(estates):
