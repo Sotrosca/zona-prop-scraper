@@ -51,7 +51,7 @@ class Scrapper:
         estates = []
         estates_scrapped = 0
         estates_quantity = self.get_estates_quantity()
-        while estates_quantity > estates_scrapped or page_number < 100:
+        while estates_quantity > estates_scrapped and page_number < 100:
             print(f'Page: {page_number}')
             estates += self.scrap_page(page_number)
             page_number += 1
