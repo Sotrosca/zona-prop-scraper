@@ -51,7 +51,7 @@ class Scrapper:
         estates = []
         estates_scrapped = 0
         estates_quantity = self.get_estates_quantity()
-        while estates_quantity > estates_scrapped and page_number < 100:
+        while estates_quantity > estates_scrapped:
             print(f'Page: {page_number}')
             estates += self.scrap_page(page_number)
             page_number += 1
@@ -77,7 +77,9 @@ class Scrapper:
     def parse_estate(self, estate_post):
         # find div with anything data-qa atributte
         data_qa = estate_post.find_all('div', attrs={'data-qa': True})
+        url = estate_post.get_attribute_list('data-to-posting')[0]
         estate = {}
+        estate['url'] = url
         for data in data_qa:
             label = data['data-qa']
             text = None
@@ -122,7 +124,10 @@ class Scrapper:
         features = {}
 
         for feature in features_matches:
-            feature_unit = f'{FEATURE_UNIT_DICT[feature[1]]}_{features_appearance[FEATURE_UNIT_DICT[feature[1]]]}'
-            features_appearance[FEATURE_UNIT_DICT[feature[1]]] += 1
+            try:
+                feature_unit = f'{FEATURE_UNIT_DICT[feature[1]]}_{features_appearance[FEATURE_UNIT_DICT[feature[1]]]}'
+                features_appearance[FEATURE_UNIT_DICT[feature[1]]] += 1
+            except:
+                feature_unit = feature[1]
             features[feature_unit] = feature[0]
         return features
