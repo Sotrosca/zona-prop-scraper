@@ -23,7 +23,7 @@ LABEL_DICT = {
     'POSTING_CARD_DESCRIPTION' : 'description',
 }
 
-class Scrapper:
+class Scraper:
     def __init__(self, browser, base_url):
         self.browser = browser
         self.base_url = base_url
@@ -49,13 +49,13 @@ class Scrapper:
     def scrap_website(self):
         page_number = 1
         estates = []
-        estates_scrapped = 0
+        estates_scraped = 0
         estates_quantity = self.get_estates_quantity()
-        while estates_quantity > estates_scrapped:
+        while estates_quantity > estates_scraped:
             print(f'Page: {page_number}')
             estates += self.scrap_page(page_number)
             page_number += 1
-            estates_scrapped = len(estates)
+            estates_scraped = len(estates)
             time.sleep(3)
 
         return estates

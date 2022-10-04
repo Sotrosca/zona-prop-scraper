@@ -1,10 +1,10 @@
-# zona-prop-scrapping
+# zona-prop-scraping
 
-Scrapper de Zonaprop.
+Scraper de Zonaprop.
 
 Modo de uso:
 
-Ejecutar archivo "zonaprop-scrapping.py" seteando en la variable url la búsqueda que se quiere realizar. Entrar a la página y ejecutar una primera búsqueda con los filtros deseados y extraer la url (sacar el final ".html").
+Ejecutar archivo "zonaprop-scraping.py" seteando en la variable url la búsqueda que se quiere realizar. Entrar a la página y ejecutar una primera búsqueda con los filtros deseados y extraer la url (sacar el final ".html").
 
 Se guardaran en el directorio "./data/" un archivo ".csv" y otro ".xls" con los datos extraídos de todas las páginas correspondientes a la búsqueda.
 
