@@ -34,4 +34,4 @@ python zonaprop-scraping.py https://www.zonaprop.com.ar/departamentos-alquiler.h
 
 ## Análisis de los datos:
 
-En construcción...
+En construcción ... :construction_worker:
