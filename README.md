@@ -2,7 +2,7 @@
 
 Scraper de Zonaprop.
 
-Modo de uso:
+## Modo de uso:
 
 1- Instalar las dependencias declaradas en el archivo `requirements.txt`:
 
@@ -31,3 +31,7 @@ python zonaprop-scraping.py https://www.zonaprop.com.ar/departamentos-alquiler.h
 ```
 
 3- El script generará un archivo `.csv` en el directorio `data` con los datos de los inmuebles obtenidos.
+
+## Análisis de los datos:
+
+En construcción...
