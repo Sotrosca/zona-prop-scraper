@@ -5,28 +5,27 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neural_network import MLPRegressor
 from sklearn.model_selection import train_test_split
 
-data_path = './data/data-26-07-2021_204537.csv'
+data_path = './data/data-16-08-2021_214633.csv'
 
 df = pd.read_csv(data_path)
 df = df[df['badge'] == '$']
 df.dropna(subset = ['Area'], inplace=True)
 df.dropna(subset = ['prize'], inplace=True)
-#df = df[df['Area'] < 500]
-#df = df[df['prize'] < 700000]
-X = df.loc[:, 'Area'].values.reshape(-1, 1)  # values converts it into
-Y = df.loc[:,'prize'].values.reshape(-1, 1)  # -1 means that calculate
-linear_regressor = LinearRegression()  # create object for the class
-linear_regressor.fit(X, Y)  # perform linear regression
 
-Y_pred = linear_regressor.predict(X)  # make predictions
+X = df.loc[:, 'Area'].values.reshape(-1, 1)
+Y = df.loc[:,'prize'].values.reshape(-1, 1)
+linear_regressor = LinearRegression()
+linear_regressor.fit(X, Y)
+
+Y_pred = linear_regressor.predict(X)
 
 mlpRegressor = MLPRegressor(
     hidden_layer_sizes=[20, 20, 20],
-    activation='relu',
+    activation='logistic',
     max_iter=2000,
     solver='adam',
     batch_size=5,
-    learning_rate_init = 0.0001,
+    learning_rate_init = 0.001,
     learning_rate = 'adaptive',
     shuffle=True,
     early_stopping=True,

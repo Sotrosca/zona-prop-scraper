@@ -1,25 +1,33 @@
-# zona-prop-scrapping
+# zona-prop-scraping
 
-Scrapper de Zonaprop.
+Scraper de Zonaprop.
 
 Modo de uso:
 
-Ejecutar archivo "zonaprop-scrapping.py" seteando en la variable url la búsqueda que se quiere realizar. Entrar a la página y ejecutar una primera búsqueda con los filtros deseados y extraer la url (sacar el final ".html").
+1- Instalar las dependencias declaradas en el archivo `requirements.txt`:
 
-Se guardaran en el directorio "./data/" un archivo ".csv" y otro ".xls" con los datos extraídos de todas las páginas correspondientes a la búsqueda.
+Con pip:
 
-Análisis de datos:
+```bash
+pip install -r requirements.txt
+```
 
-Ejecutar el archivo "analysis-estates.py" seteando la variable "data_path" con la ubicación del archivo csv.
+Con conda:
 
-Utilizando los datos de área y precio de las propiedades se calculará un regresor lineal que prediga el precio de una propiedad dada el área de la misma.
+```bash
+conda install --file requirements.txt
+```
 
-A su vez se entrenará con estos mismos datos un red neuronal multicapa que también se utilizará para predecir los precios.
+2- Ejecutar el script `zonaprop-scraping.py` pasando como argumento la url de la página de Zonaprop que se desea scrapear (por default se utilizará la url: https://www.zonaprop.com.ar/departamentos-alquiler.html):
 
-Pequeña conclusión:
+```bash
+python zonaprop-scraping.py <url>
+```
 
-Se puede ver, analizando como la red neuronal predice mayor valor a las propiedades de 3 ambientes y de 2 ambientes grandes con respecto al regresor lineal, que de alguna forma la red está entiendo la mayor demanda que hay por estas propiedades en el mercado.
+Por ejemplo:
 
-Con el mismo razonamiento, la red neuronal entiende que hay menos demanda por departamentos más pequeños o excesivamente grandes.
+```bash
+python zonaprop-scraping.py https://www.zonaprop.com.ar/departamentos-alquiler.html
+```
 
-Esto tiene cierto sentido ya que las familias de clase media buscarán alquilar propiedades que se encuentren en un rango de área de entre 50 y 80 mts cuadrados, aumentando la demanda de estas propiedades.
+3- El script generará un archivo `.csv` en el directorio `data`.
