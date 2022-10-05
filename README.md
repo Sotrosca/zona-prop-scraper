@@ -30,4 +30,4 @@ Por ejemplo:
 python zonaprop-scraping.py https://www.zonaprop.com.ar/departamentos-alquiler.html
 ```
 
-3- El script generará un archivo `.csv` en el directorio `data`.
+3- El script generará un archivo `.csv` en el directorio `data` con los datos de los inmuebles obtenidos.
