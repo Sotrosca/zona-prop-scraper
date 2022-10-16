@@ -34,6 +34,6 @@ python zonaprop-scraping.py https://www.zonaprop.com.ar/departamentos-alquiler.h
 
 ## Análisis de los datos:
 
-Se puede ver un análisis de los datos obtenidos por el scraper en el archivo `/analisis/exploratory-analysis.ipynb`.
+Se puede ver un análisis de los datos obtenidos por el scraper en el archivo `/analysis/exploratory-analysis.ipynb`.
 
 Tomar este análisis como un ejemplo de cómo se puede utilizar el scraper para obtener datos y analizarlos.
