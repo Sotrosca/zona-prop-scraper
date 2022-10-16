@@ -1,4 +1,5 @@
 import datetime
+import os
 import re
 
 
@@ -11,7 +12,11 @@ def get_filename_from_datetime(base_url, extension):
     return f'data/{base_url_without_host}-{datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.{extension}'
 
 def save_df_to_csv(df, filename):
+    create_root_directory(filename)
     df.to_csv(filename, index=False)
 
 def parse_zonaprop_url(url):
     return url.replace('.html', '')
+
+def create_root_directory(filename):
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
