@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "zonaprop-scraper"
+name = "zonaprop_scraper"
 version = "0.1.0"
 description = "scraper for zonaprop"
-authors = ["Your Name <you@example.com>"]
+authors = ["Agustin Canavari <agustincanavari@gmail.com>"]
 readme = "README.md"
 packages = [{include = "zonaprop_scraper"}]
 
