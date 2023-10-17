@@ -5,3 +5,4 @@
 *.ipynb
 *.html
 .vscode/settings.json
+.python-version
