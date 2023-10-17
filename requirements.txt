@@ -1,9 +1,0 @@
-beautifulsoup4
-cloudscraper
-matplotlib
-numpy
-pandas
-pytest
-pytest_mock
-scikit_learn
-lxml
