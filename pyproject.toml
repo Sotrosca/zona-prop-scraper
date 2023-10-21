@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "zonaprop_scraper"
+version = "0.1.0"
+description = "scraper for zonaprop"
+authors = ["Agustin Canavari <agustincanavari@gmail.com>"]
+readme = "README.md"
+packages = [{include = "zonaprop_scraper"}]
+
+[tool.poetry.dependencies]
+python = "3.12"
+beautifulsoup4 = "^4.12.2"
+cloudscraper = "^1.2.71"
+matplotlib = "^3.8.0"
+numpy = "^1.26.1"
+pandas = "^2.1.1"
+pytest = "^7.4.2"
+pytest-mock = "^3.11.1"
+scikit-learn = "^1.3.1"
+lxml = "^4.9.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
