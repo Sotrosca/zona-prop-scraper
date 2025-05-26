@@ -1,6 +1,5 @@
 import re
 import time
-from functools import reduce
 
 from bs4 import BeautifulSoup
 
@@ -37,11 +36,17 @@ class Scraper:
         print(f'URL: {page_url}')
 
         page = self.browser.get_text(page_url)
-
+        time.sleep(10)
         soup = BeautifulSoup(page, 'lxml')
-        estate_posts = soup.find_all('div', attrs = {'data-posting-type' : True})
+        state_posts = []
+        div_elements = soup.find_all('div', class_='postingsList-module__card-container')
+        for div in div_elements:
+            if div.parent.name == 'div' and 'postingsList-module__postings-container' in div.parent.get('class', []):
+                for child in div.children:
+                    if child.name == 'div' and 'postingCardLayout-module__posting-card-layout' in child.get('class', []):
+                        state_posts.append(child)
         estates = []
-        for estate_post in estate_posts:
+        for estate_post in state_posts:
             estate = self.parse_estate(estate_post)
             estates.append(estate)
         return estates
@@ -64,6 +69,7 @@ class Scraper:
     def get_estates_quantity(self):
         page_url = f'{self.base_url}{HTML_EXTENSION}'
         page = self.browser.get_text(page_url)
+        time.sleep(10)
         soup = BeautifulSoup(page, 'lxml')
         soup.find_all('h1')[0].text
 
