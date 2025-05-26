@@ -13,14 +13,16 @@ def main(url):
     print(f'This may take a while...')
     browser = Browser()
     scraper = Scraper(browser, base_url)
-    estates = scraper.scrap_website()
-    df = pd.DataFrame(estates)
-    print('Scraping finished !!!')
-    print('Saving data to csv file')
-    filename = utils.get_filename_from_datetime(base_url, 'csv')
-    utils.save_df_to_csv(df, filename)
-    print(f'Data saved to {filename}')
-    print('Scrap finished !!!')
+    try:
+        estates = scraper.scrap_website()
+        df = pd.DataFrame(estates)
+        print('Scraping finished !!!')
+        print('Saving data to csv file')
+        filename = utils.get_filename_from_datetime(base_url, 'csv')
+        utils.save_df_to_csv(df, filename)
+        print(f'Data saved to {filename}')
+    except TypeError:
+        print("Error while scraping the website. Please check the URL or the website structure.")
 
 if __name__ == '__main__':
     url = sys.argv[1]
