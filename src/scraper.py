@@ -1,8 +1,9 @@
 import re
 import time
-from functools import reduce
+import unicodedata
 
 from bs4 import BeautifulSoup
+
 
 PAGE_URL_SUFFIX = '-pagina-'
 HTML_EXTENSION = '.html'
@@ -52,6 +53,7 @@ class Scraper:
         estates_scraped = 0
         estates_quantity = self.get_estates_quantity()
         while estates_quantity > estates_scraped:
+        # while page_number == 1:
             print(f'Page: {page_number}')
             estates += self.scrap_page(page_number)
             page_number += 1
@@ -76,7 +78,7 @@ class Scraper:
 
     def parse_estate(self, estate_post):
         # find div with anything data-qa atributte
-        data_qa = estate_post.find_all('div', attrs={'data-qa': True})
+        data_qa = estate_post.find_all(attrs={'data-qa': True})
         url = estate_post.get_attribute_list('data-to-posting')[0]
         estate = {}
         estate['url'] = url
@@ -93,9 +95,16 @@ class Scraper:
             elif label in ['POSTING_CARD_FEATURES']:
                 features = self.parse_features(data.get_text())
                 estate.update(features)
-            else:
-                text = data.get_text()
-                estate[label] = text
+            # else: # For Testing
+                # Current Unknown Labels:
+                # POSTING_CARD_GALLERY
+                # CARD_FAV
+                # CARD_VIEWPHONE
+                # CARD_WHATSAPP
+                # CARD_CONTACT_MODAL
+                # print("Unknown Label: ", label)
+                # text = data.get_text()
+                # estate[label] = text
         return estate
 
     def parse_currency_value(self, text):
@@ -115,19 +124,35 @@ class Scraper:
         text = text.strip()
         return text
 
-    def parse_features(self, text):
-
-        features_matches = re.compile(r'(\d+\.?\d*)\s(\w+)').findall(text)
-
-        features_appearance = {'square_meters_area': 0, 'rooms': 0, 'bedrooms': 0, 'bathrooms': 0, 'parking' : 0}
-
+    def parse_features(self, text: str) -> dict:
+        """
+        Parse the features string from a property card, e.g.
+        '81 m² tot. 3 amb. 2 dorm. 1 baño'
+        into a clean dict.
+        """
         features = {}
 
-        for feature in features_matches:
-            try:
-                feature_unit = f'{FEATURE_UNIT_DICT[feature[1]]}_{features_appearance[FEATURE_UNIT_DICT[feature[1]]]}'
-                features_appearance[FEATURE_UNIT_DICT[feature[1]]] += 1
-            except:
-                feature_unit = feature[1]
-            features[feature_unit] = feature[0]
+        # normalize accents
+        text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii").lower()
+
+        # square meters
+        match = re.search(r'(\d+)\s*m2', text)
+        if match:
+            features['square_meters_area'] = int(match.group(1))
+
+        # ambientes (rooms)
+        match = re.search(r'(\d+)\s*amb', text)
+        if match:
+            features['rooms'] = int(match.group(1))
+
+        # dormitorios (bedrooms)
+        match = re.search(r'(\d+)\s*dorm', text)
+        if match:
+            features['bedrooms'] = int(match.group(1))
+
+        # baños (bathrooms)
+        match = re.search(r'(\d+)\s*bano', text)
+        if match:
+            features['bathrooms'] = int(match.group(1))
+
         return features

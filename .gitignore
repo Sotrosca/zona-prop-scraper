@@ -1,7 +1,9 @@
-
+.python-version
 *.pyc
 *.csv
 *.xls
 *.ipynb
 *.html
 .vscode/settings.json
+
+data/
